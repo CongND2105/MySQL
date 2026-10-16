@@ -388,3 +388,33 @@ DELIMITER ;
 
 CALL getALL_customer();
 CALL getByID_customer(1);
+/*
+Trigger - là một cái bẫy hay 1 sự kiện sẽ tự động được kích hoạt khi sự kiện đó thoả điều kiện được kích hoạt của trigger
+*/
+use mydb;
+ALTER TABLE employees
+ADD COLUMN salary DECIMAL (10,2) 
+AFTER hourly_pay ;
+
+SELECT * FROM employees;
+
+UPDATE employees
+SET salary = hourly_pay * 2080;
+
+CREATE TRIGGER before_hourly_pay_update 
+BEFORE UPDATE ON employees
+FOR EACH ROW
+SET NEW.salary = NEW.hourly_pay * 2080;
+
+UPDATE employees 
+SET hourly_pay = 25 WHERE employees_id = 1;
+
+CREATE TRIGGER before_hourly_pay_insert
+BEFORE INSERT ON employees
+FOR EACH ROW 
+SET NEW.salary = NEW.hourly_pay * 2080 ;
+
+
+SELECT * FROM employees;
+
+INSERT INTO employees VALUES (6,"Nghia", "Nguyen", "Intern", 10,null,"2026-10-16",1);
