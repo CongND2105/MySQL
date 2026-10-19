@@ -130,3 +130,20 @@ INSERT INTO order_details VALUES
     (4,6,1,950),
     (5,9,1,5000);
 -- ============================================================ --
+TRIGGER ZONE
+*/
+
+select * from products;
+select * from order_details;
+
+DELIMITER $$ 
+CREATE TRIGGER after_insert_order_details
+AFTER INSERT ON order_details
+FOR EACH ROW
+BEGIN
+	UPDATE products
+    SET inventory_quantity = inventory_quantity - NEW.quantity
+    WHERE product_id = NEW.product_id ;
+END $$
+DELIMITER ;
+-- ============================================================ --
