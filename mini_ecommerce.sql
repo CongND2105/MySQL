@@ -81,6 +81,29 @@ ON DELETE CASCADE;
 
 -- ============================================================ --
 /*
+	STORED PROCEDURE ZONE
+*/
+DELIMITER $$
+CREATE PROCEDURE getProductById (IN id INT)
+BEGIN 
+	SELECT product_name FROM products p
+    JOIN order_details od ON od.product_id = p.product_id
+    JOIN orders o ON o.order_id = od.order_id
+    JOIN users u ON u.user_id = o.user_id
+    WHERE u.user_id = id ;
+END $$
+DELIMITER ;
+    
+-- ============================================================ --
+
+-- ============================================================ --
+/*
+	TEST FEATURE ZONE
+*/
+
+call getProductById(2);
+-- ============================================================ --
+/*
 INSERT DATA ZONE 
 */
 
@@ -130,6 +153,7 @@ INSERT INTO order_details VALUES
     (4,6,1,950),
     (5,9,1,5000);
 -- ============================================================ --
+/*
 TRIGGER ZONE
 */
 
