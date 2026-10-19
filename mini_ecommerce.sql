@@ -78,3 +78,55 @@ ALTER TABLE order_details
 ADD FOREIGN KEY (order_id) REFERENCES orders(order_id)
 ON DELETE CASCADE;
 -- ============================================================ --
+
+-- ============================================================ --
+/*
+INSERT DATA ZONE 
+*/
+
+SELECT * FROM users;
+INSERT INTO users (user_name, user_email, user_password, creation_date)
+VALUES
+    ('Nguyen Trung Nam', 'nam@gmail.com', 'nam@123', '2026-09-22'),
+    ('Nguyen Van A', 'A@gmail.com', 'A@123', '2026-09-22'),
+    ('Nguyen Van B', 'B@gmail.com', 'B@123', '2026-09-20'),
+    ('Nguyen Van C', 'C@gmail.com', 'C@123', '2026-09-20'),
+    ('Nguyen Van D', 'D@gmail.com', 'D@123', '2026-10-12'),
+    ('Nguyen Van E', 'E@gmail.com', 'E@123', '2026-10-15');
+
+SELECT * FROM categories;
+INSERT INTO categories VALUES
+	(1,"PHONE"),
+    (2,"PC"),
+    (3,"LATOP");
+
+SELECT * FROM products;
+INSERT INTO products VALUES
+	(1,"Laptop ASUS", "LAPTOP thuong hieu ASUS , man 2K", 1000, 72,3),
+    (2,"Laptop HP", "LAPTOP thuong hieu HP , man FULLHD", 970, 60,3),
+    (3,"Laptop MSI", "LAPTOP thuong hieu MSI , man 4k, RTX 5070", 1500, 20,3),
+    (4, "IPHONE 17 PRO MAX", "120HZ , FULL HD, CHIP A17", 1200, 120, 1),
+    (5, "SAMSUNG GALAXY Ultra MAX", "160HZ , FULL HD, SNAPDRAGON 1020", 1120, 57, 1),
+    (6, "XIAOMIE", "7020Mah, 240HZ, FULL HD", 950, 12, 1),
+    (7,"PC VAN PHONG", "I3 10300H, GTX 1650, RAM 8GB", 2200, 40, 2),
+	(8,"PC GAMING", "I9 13900K , RTX 5070TI , RAM 32GB", 3000, 30, 2),
+	(9,"PC STREAMER", "I9 19900K , RTX 5090TI , RAM 64GB, 8K, 360HZ", 5000, 5, 2);
+    
+SELECT * FROM orders;
+INSERT INTO orders(user_id, total,order_date)VALUES
+	(1,2200,"2026-08-22"),
+    (2,3000,"2026-09-19"),
+    (3,1200,"2026-07-12"),
+    (4,950,"2026-09-18"),
+    (5,5000,"2026-10-10");
+    
+SELECT * FROM order_details;
+
+INSERT INTO order_details VALUES 
+	(1,1,1,1000),
+    (1,4,1,1200),
+    (2,8,1,3000),
+    (3,4,1,1200),
+    (4,6,1,950),
+    (5,9,1,5000);
+-- ============================================================ --
