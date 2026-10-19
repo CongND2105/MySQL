@@ -78,3 +78,28 @@ ALTER TABLE order_details
 ADD FOREIGN KEY (order_id) REFERENCES orders(order_id)
 ON DELETE CASCADE;
 -- ============================================================ --
+
+-- ============================================================ --
+/*
+	STORED PROCEDURE ZONE
+*/
+DELIMITER $$
+CREATE PROCEDURE getProductById (IN id INT)
+BEGIN 
+	SELECT product_name FROM products p
+    JOIN order_details od ON od.product_id = p.product_id
+    JOIN orders o ON o.order_id = od.order_id
+    JOIN users u ON u.user_id = o.user_id
+    WHERE u.user_id = id ;
+END $$
+DELIMITER ;
+    
+-- ============================================================ --
+
+-- ============================================================ --
+/*
+	TEST FEATURE ZONE
+*/
+
+call getProductById(2);
+-- ============================================================ --
